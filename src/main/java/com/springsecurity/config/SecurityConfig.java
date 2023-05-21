@@ -12,6 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import static com.springsecurity.config.RoleEnum.ADMIN;
+import static com.springsecurity.config.RoleEnum.STUDENT;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -19,6 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/", "/home", "/index").permitAll()
+                .antMatchers("/api/**").hasRole(STUDENT.name())
                 .anyRequest()
                 .authenticated().and()
                 .httpBasic();
@@ -27,11 +31,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     protected UserDetailsService userDetailsService() {
-        final UserDetails user_anurag = User.builder().username("anurag")
+        final UserDetails userAnna = User.builder().username("anna")
                 .password(passwordEncoder().encode("password"))
-                .roles("STUDENT")
+                .roles(STUDENT.name())
                 .build();
-        return new InMemoryUserDetailsManager(user_anurag);
+        final UserDetails userLinda = User.builder().username("linda")
+                .password(passwordEncoder().encode("password"))
+                .roles(ADMIN.name())
+                .build();
+        return new InMemoryUserDetailsManager(userAnna, userLinda);
     }
 
     @Bean
