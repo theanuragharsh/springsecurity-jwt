@@ -16,21 +16,24 @@ public class StudentManagementController {
             new Student(3, "Student3"));
 
     @GetMapping("/")
-    public List<Student> getAllStuedents() {
+    public List<Student> getAllStudents() {
         return STUDENTS;
     }
 
     @PostMapping("/")
-    public boolean registerNewStudent(@RequestBody Student student) {
-        return STUDENTS.add(student);
+    public void registerNewStudent(@RequestBody Student student) {
+        System.out.println("POST");
+        ;
     }
 
     @PutMapping("/{studentId}")
-    public void updateStudent(@PathVariable Integer studentId,@RequestBody Student student){
-        System.out.println(String.format("%s %s", studentId,student));
+    public void updateStudent(@PathVariable Integer studentId, @RequestBody Student student) {
+        System.out.println(String.format("%s %s", studentId, student));
     }
+
     @DeleteMapping("/{studentId}")
-    public boolean deleteStudent(Integer studentId) {
-        return STUDENTS.remove(studentId);
+    public void deleteStudent(Integer studentId) {
+        System.out.println("DELETE");
+        ;
     }
 }
