@@ -30,7 +30,7 @@ public enum UserRoleEnum {
         they can be used for authorization and access control purposes.*/
     public Set<SimpleGrantedAuthority> getAuthorities() {
         Set<SimpleGrantedAuthority> simpleGrantedAuthorities = getPermissions().stream()
-                .map(permissions -> new SimpleGrantedAuthority(permissions.getPermissions()))
+                .map(authorities -> new SimpleGrantedAuthority(authorities.getPermissions()))
                 .collect(Collectors.toSet());
         simpleGrantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
         return simpleGrantedAuthorities;

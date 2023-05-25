@@ -13,9 +13,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+ import java.time.Duration;
 
 import static com.springsecurity.config.UserRoleEnum.*;
-import static com.springsecurity.config.UserRolePermissions.*;
 
 @Configuration
 @EnableWebSecurity
@@ -33,8 +35,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/management/api/**").hasAuthority(COURSE_WRITE.getPermissions())
                 .antMatchers(HttpMethod.GET, "/management/api/**").hasAnyRole(ADMIN.name(), ADMINTRAINEE.name())*/
                 .anyRequest()
-                .authenticated().and()
-                .httpBasic();
+                .authenticated()
+                .and()
+                    .formLogin()
+                    .loginPage("/login").permitAll()
+                    .defaultSuccessUrl("/courses", true) //redirects to this page after logged in successfully
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                .and()
+                    .rememberMe()
+                    .rememberMeParameter("remember-me")
+                    .tokenValiditySeconds((int) Duration.ofDays(21).toSeconds()) //default duration is 2 weeks
+                    .key("something-very-secured")
+                .and()
+                    .logout()
+                    .logoutUrl("/login")
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout", HttpMethod.GET.name()))
+//                    When CSRF is disabled you can specify any method as logging-out request but
+//                    when enabled it should only be a POST request with the valid CSRF token
+                    .clearAuthentication(true) // Clears authentication of the current logged-in user
+                    .deleteCookies("JSESSIONID","remember-me") //Clears cookies
+                    .logoutSuccessUrl("/login"); // redirects to this url when logged out
+
     }
 
     @Bean

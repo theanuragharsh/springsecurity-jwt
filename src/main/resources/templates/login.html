@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Please login to proceed </title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        body {
+<!--                background-color: #3e3e3e;-->
+<!--                color: white;-->
+                    font-family:sans-serif;
+                    background: -webkit-linear-gradient(to right, #155799, #159957);
+                    background: linear-gradient(to right, #155799, #159957);
+                    color:whitesmoke;
+             }
+        form{
+                width:35rem;
+                margin: auto;
+                color:whitesmoke;
+                backdrop-filter: blur(16px) saturate(180%);
+                -webkit-backdrop-filter: blur(16px) saturate(180%);
+                background-color: rgba(11, 15, 13, 0.582);
+                border-radius: 12px;
+                border: 1px solid rgba(255, 255, 255, 0.125);
+                padding: 20px 25px;
+            }
+        input[type=text], input[type=password]{
+                width: 100%;
+                margin: 10px 0;
+                border-radius: 5px;
+                padding: 15px 18px;
+                box-sizing: border-box;
+            }
+
+            button {
+                background-color: #030804;
+                color: white;
+                padding: 14px 20px;
+                border-radius: 5px;
+                margin: 7px 0;
+                width: 100%;
+                font-size: 18px;
+              }
+
+            button:hover {
+                opacity: 0.6;
+                cursor: pointer;
+            }
+
+            .headingsContainer{
+                text-align: center;
+            }
+
+            .headingsContainer p{
+                color: gray;
+            }
+            .mainContainer{
+                padding: 16px;
+            }
+
+            .subcontainer{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .subcontainer a{
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+
+            span.forgotpsd a {
+                float: right;
+                color: whitesmoke;
+                padding-top: 16px;
+              }
+
+            .forgotpsd a{
+                color: rgb(74, 146, 235);
+              }
+
+            .forgotpsd a:link{
+                text-decoration: none;
+              }
+
+              .register{
+                color: white;
+                text-align: center;
+              }
+
+              .register a{
+                color: rgb(74, 146, 235);
+              }
+
+              .register a:link{
+                text-decoration: none;
+              }
+
+              /* Media queries for the responsiveness of the page */
+              @media screen and (max-width: 600px) {
+                form{
+                  width: 25rem;
+                }
+              }
+
+              @media screen and (max-width: 400px) {
+                form{
+                  width: 20rem;
+                }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <form class="form-signin" method="post" action="/login">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <p>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
+                   autofocus="">
+        </p>
+        <p>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                   required="">
+        </p>
+        <p>
+            Remember me?
+            <input type="checkbox" id="remember-me" name="remember-me" checked=checked class="form-control">
+        </p>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>
+</body>
+</html>
