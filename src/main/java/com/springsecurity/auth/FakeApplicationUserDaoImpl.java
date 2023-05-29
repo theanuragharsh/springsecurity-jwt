@@ -25,7 +25,7 @@ public class FakeApplicationUserDaoImpl implements FakeApplicationUserDao {
                 .stream()
                 .filter(applicationUserDetails -> username.equals(applicationUserDetails.getUsername()))
                 .findAny()
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("Username : %s not found..!")));
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("Username : %s not found..!", username)));
     }
 
     private List<ApplicationUserDetails> provideUserDetails() {
