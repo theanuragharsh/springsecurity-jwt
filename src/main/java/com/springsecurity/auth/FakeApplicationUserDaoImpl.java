@@ -30,7 +30,7 @@ public class FakeApplicationUserDaoImpl implements FakeApplicationUserDao {
 
     private List<ApplicationUserDetails> provideUserDetails() {
         return Lists.newArrayList(
-                new ApplicationUserDetails("annsmith", passwordEncoder.encode(password),
+                new ApplicationUserDetails("anna", passwordEncoder.encode(password),
                         STUDENT.getAuthorities(),
                         true, true, true, true),
                 new ApplicationUserDetails("linda", passwordEncoder.encode(password),

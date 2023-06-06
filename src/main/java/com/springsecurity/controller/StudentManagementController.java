@@ -16,13 +16,13 @@ public class StudentManagementController {
             new Student(2, "Student2"),
             new Student(3, "Student3"));
 
-    @GetMapping("/")
+    @GetMapping()
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ADMINTRAINEE')")
     public List<Student> getAllStudents() {
         return STUDENTS;
     }
 
-    @PostMapping("/")
+    @PostMapping()
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void registerNewStudent(@RequestBody Student student) {
         System.out.println("POST");
